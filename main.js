@@ -1,27 +1,35 @@
-const prompt = require('prompt-sync');
+const prompt = require('prompt-sync')({sigint: true});
 
-let todos = [''];
-const iscomplete = [true, false]
+let todos = [];
+const iscomplete = [];
 
-    while (todos.length <=10) {
-            for (let i=0; i<=todos.length; i++){
-                console.log(todos[i]);
+    
+console.log("Input [1] to open to-do list or [2] to mark items as completed.")
+
+    let decisionx = Number(prompt(">"));
+
+    while (decisionx === 1 ) {
+            for (let i=0; i < todos.length; i++){ 
+                console.log("Number: " + i + " " + iscomplete[i] + " " + todos[i]) //print to-do list item
             }
-        console.log('Input [1] to add items to your list and [2] to check items off:');
-        let choicex = Number(prompt())
+        console.log("Input [1] to add items to your list and [2] to check items off:")
+        let choicex = Number(prompt(">"))
                 if (choicex === 1){
-                    let itemx = prompt('Add item to your to-do list:')
-                    todos = itemx 
+                    let itemx = String(prompt("Add item to your to-do list: "))
+                    todos.push(itemx)
+                    iscomplete.push("incomplete")
                 }
                 if (choicex === 2){
-                    console.log('You have: ' +todos.length + 'to-dos left.')
-                        
+                    console.log("You have: " +todos.length + " to-dos left.")
                     
-                    let checkoff = Number(prompt('Input [1] to mark as completed or [2] to mark as incomplete.'))
+                    console.log("Input number of item to mark as completed")
+                    iscomplete.unshift("complete")
+                    let checkoff = Number(prompt(">"))
+                    let n = checkoff
+                    
+                        console.log("Number: " + checkoff + " " + iscomplete[0] + " " + todos[n])
 
-                        for (let i = 0; i < todos.length; i++) {
-                         todos = todos[i];
-                         isComplete = checkoff[i];
+                       
                         }
 
 
@@ -30,8 +38,5 @@ const iscomplete = [true, false]
 
        
 
-    }
-// Start off your project by creating a loop that loops forever (use a while loop). Inside this loop you'll want to do three things:
-// 1. Display content to the user
-// 2. Prompt the user for an action
-// 3. Handle that action accordingly
+    
+
